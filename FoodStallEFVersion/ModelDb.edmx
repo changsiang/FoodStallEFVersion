@@ -1,0 +1,369 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="changsiangfooddbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Food Dishes">
+          <Key>
+            <PropertyRef Name="dishName" />
+          </Key>
+          <Property Name="dishName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="stockLevel" Type="int" />
+          <Property Name="price" Type="money" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="orderID" />
+          </Key>
+          <Property Name="orderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="orderDate" Type="date" />
+          <Property Name="deliveryLocation" Type="nvarchar" MaxLength="50" />
+          <Property Name="orderStatus" Type="nchar" MaxLength="10" />
+          <Property Name="orderUser" Type="nvarchar" MaxLength="50" />
+          <Property Name="orderDish" Type="nvarchar" MaxLength="50" />
+          <Property Name="orderSize" Type="nvarchar" MaxLength="50" />
+          <Property Name="orderSpices" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Sizes">
+          <Key>
+            <PropertyRef Name="sizeOption" />
+          </Key>
+          <Property Name="sizeOption" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="price" Type="money" />
+        </EntityType>
+        <EntityType Name="TransLog">
+          <Key>
+            <PropertyRef Name="logId" />
+          </Key>
+          <Property Name="logId" Type="int" Nullable="false" />
+          <Property Name="OrderId" Type="int" />
+          <Property Name="action" Type="nvarchar" MaxLength="50" />
+          <Property Name="userName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="userName" />
+          </Key>
+          <Property Name="personName" Type="nvarchar" MaxLength="50" />
+          <Property Name="userName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="personAddress" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK__Orders__orderDis__5DCAEF64">
+          <End Role="Food Dishes" Type="Self.Food Dishes" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Food Dishes">
+              <PropertyRef Name="dishName" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="orderDish" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orders__orderSiz__5EBF139D">
+          <End Role="Sizes" Type="Self.Sizes" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sizes">
+              <PropertyRef Name="sizeOption" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="orderSize" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orders__orderUse__5CD6CB2B">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="userName" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="orderUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TransLog__OrderI__60A75C0F">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="0..1" />
+          <End Role="TransLog" Type="Self.TransLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="orderID" />
+            </Principal>
+            <Dependent Role="TransLog">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TransLog__userNa__619B8048">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="TransLog" Type="Self.TransLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="userName" />
+            </Principal>
+            <Dependent Role="TransLog">
+              <PropertyRef Name="userName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="changsiangfooddbModelStoreContainer">
+          <EntitySet Name="Food Dishes" EntityType="Self.Food Dishes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sizes" EntityType="Self.Sizes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TransLog" EntityType="Self.TransLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Orders__orderDis__5DCAEF64" Association="Self.FK__Orders__orderDis__5DCAEF64">
+            <End Role="Food Dishes" EntitySet="Food Dishes" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orders__orderSiz__5EBF139D" Association="Self.FK__Orders__orderSiz__5EBF139D">
+            <End Role="Sizes" EntitySet="Sizes" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orders__orderUse__5CD6CB2B" Association="Self.FK__Orders__orderUse__5CD6CB2B">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TransLog__OrderI__60A75C0F" Association="Self.FK__TransLog__OrderI__60A75C0F">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="TransLog" EntitySet="TransLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TransLog__userNa__619B8048" Association="Self.FK__TransLog__userNa__619B8048">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="TransLog" EntitySet="TransLog" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="changsiangfooddbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Food_Dish">
+          <Key>
+            <PropertyRef Name="dishName" />
+          </Key>
+          <Property Name="dishName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="stockLevel" Type="Int32" />
+          <Property Name="price" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__orderDis__5DCAEF64" FromRole="Food_Dishes" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="orderID" />
+          </Key>
+          <Property Name="orderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="orderDate" Type="DateTime" Precision="0" />
+          <Property Name="deliveryLocation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="orderStatus" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="orderUser" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="orderDish" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="orderSize" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="orderSpices" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Food_Dishes" Relationship="Self.FK__Orders__orderDis__5DCAEF64" FromRole="Orders" ToRole="Food_Dishes" />
+          <NavigationProperty Name="Size" Relationship="Self.FK__Orders__orderSiz__5EBF139D" FromRole="Orders" ToRole="Sizes" />
+          <NavigationProperty Name="User" Relationship="Self.FK__Orders__orderUse__5CD6CB2B" FromRole="Orders" ToRole="Users" />
+          <NavigationProperty Name="TransLogs" Relationship="Self.FK__TransLog__OrderI__60A75C0F" FromRole="Orders" ToRole="TransLog" />
+        </EntityType>
+        <EntityType Name="Size">
+          <Key>
+            <PropertyRef Name="sizeOption" />
+          </Key>
+          <Property Name="sizeOption" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="price" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__orderSiz__5EBF139D" FromRole="Sizes" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="TransLog">
+          <Key>
+            <PropertyRef Name="logId" />
+          </Key>
+          <Property Name="logId" Type="Int32" Nullable="false" />
+          <Property Name="OrderId" Type="Int32" />
+          <Property Name="action" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="userName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Order" Relationship="Self.FK__TransLog__OrderI__60A75C0F" FromRole="TransLog" ToRole="Orders" />
+          <NavigationProperty Name="User" Relationship="Self.FK__TransLog__userNa__619B8048" FromRole="TransLog" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="userName" />
+          </Key>
+          <Property Name="personName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="userName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="personAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__orderUse__5CD6CB2B" FromRole="Users" ToRole="Orders" />
+          <NavigationProperty Name="TransLogs" Relationship="Self.FK__TransLog__userNa__619B8048" FromRole="Users" ToRole="TransLog" />
+        </EntityType>
+        <Association Name="FK__Orders__orderDis__5DCAEF64">
+          <End Role="Food_Dishes" Type="Self.Food_Dish" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Food_Dishes">
+              <PropertyRef Name="dishName" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="orderDish" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orders__orderSiz__5EBF139D">
+          <End Role="Sizes" Type="Self.Size" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sizes">
+              <PropertyRef Name="sizeOption" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="orderSize" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orders__orderUse__5CD6CB2B">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="userName" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="orderUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TransLog__OrderI__60A75C0F">
+          <End Role="Orders" Type="Self.Order" Multiplicity="0..1" />
+          <End Role="TransLog" Type="Self.TransLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="orderID" />
+            </Principal>
+            <Dependent Role="TransLog">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TransLog__userNa__619B8048">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="TransLog" Type="Self.TransLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="userName" />
+            </Principal>
+            <Dependent Role="TransLog">
+              <PropertyRef Name="userName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="changsiangfooddbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Food_Dishes" EntityType="Self.Food_Dish" />
+          <EntitySet Name="Orders" EntityType="Self.Order" />
+          <EntitySet Name="Sizes" EntityType="Self.Size" />
+          <EntitySet Name="TransLogs" EntityType="Self.TransLog" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK__Orders__orderDis__5DCAEF64" Association="Self.FK__Orders__orderDis__5DCAEF64">
+            <End Role="Food_Dishes" EntitySet="Food_Dishes" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orders__orderSiz__5EBF139D" Association="Self.FK__Orders__orderSiz__5EBF139D">
+            <End Role="Sizes" EntitySet="Sizes" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orders__orderUse__5CD6CB2B" Association="Self.FK__Orders__orderUse__5CD6CB2B">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TransLog__OrderI__60A75C0F" Association="Self.FK__TransLog__OrderI__60A75C0F">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="TransLog" EntitySet="TransLogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TransLog__userNa__619B8048" Association="Self.FK__TransLog__userNa__619B8048">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="TransLog" EntitySet="TransLogs" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="changsiangfooddbModelStoreContainer" CdmEntityContainer="changsiangfooddbEntities">
+          <EntitySetMapping Name="Food_Dishes">
+            <EntityTypeMapping TypeName="changsiangfooddbModel.Food_Dish">
+              <MappingFragment StoreEntitySet="Food Dishes">
+                <ScalarProperty Name="dishName" ColumnName="dishName" />
+                <ScalarProperty Name="stockLevel" ColumnName="stockLevel" />
+                <ScalarProperty Name="price" ColumnName="price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="changsiangfooddbModel.Order">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="orderID" ColumnName="orderID" />
+                <ScalarProperty Name="orderDate" ColumnName="orderDate" />
+                <ScalarProperty Name="deliveryLocation" ColumnName="deliveryLocation" />
+                <ScalarProperty Name="orderStatus" ColumnName="orderStatus" />
+                <ScalarProperty Name="orderUser" ColumnName="orderUser" />
+                <ScalarProperty Name="orderDish" ColumnName="orderDish" />
+                <ScalarProperty Name="orderSize" ColumnName="orderSize" />
+                <ScalarProperty Name="orderSpices" ColumnName="orderSpices" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sizes">
+            <EntityTypeMapping TypeName="changsiangfooddbModel.Size">
+              <MappingFragment StoreEntitySet="Sizes">
+                <ScalarProperty Name="sizeOption" ColumnName="sizeOption" />
+                <ScalarProperty Name="price" ColumnName="price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TransLogs">
+            <EntityTypeMapping TypeName="changsiangfooddbModel.TransLog">
+              <MappingFragment StoreEntitySet="TransLog">
+                <ScalarProperty Name="logId" ColumnName="logId" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="action" ColumnName="action" />
+                <ScalarProperty Name="userName" ColumnName="userName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="changsiangfooddbModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="personName" ColumnName="personName" />
+                <ScalarProperty Name="userName" ColumnName="userName" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="personAddress" ColumnName="personAddress" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

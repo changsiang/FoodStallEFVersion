@@ -29,7 +29,7 @@ namespace FoodStallEFVersion
             }
             catch (Exception ex)
             {
-                LabelAlert.Text = "Invalid Login Username/Password. Please try again!";
+                LabelAlert.Text = string.Format("Invalid Login Username/Password. Please try again!/n{0}", ex.ToString());
             }
 
         }

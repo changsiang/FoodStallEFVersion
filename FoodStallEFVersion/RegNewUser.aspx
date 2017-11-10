@@ -8,35 +8,35 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div>
-    <h1 class="w3-center">New Account Registration</h1>
-   </div>
-        <div class="w3-bordered">
-            <table style="width:100%">
-
-            <tr>
-            <td>Username:</td> <td> Password: </td> <td> Name: </td> <td> Address: </td>
-            </tr>
-
-            <tr> 
-            <td>
-                <asp:TextBox ID="TextBoxUsername" runat="server"></asp:TextBox>
-                </td>
-            <td>
-            <asp:TextBox ID="TextBoxPw" runat="server" TextMode ="Password"></asp:TextBox>
-            </td>    
-            <td>
-                <asp:TextBox ID="TextBoxName" runat="server"></asp:TextBox>
-            </td>
-            <td>
-            <asp:TextBox ID="TextBoxAddress" runat="server" Width="537px"></asp:TextBox>
-           </td>
+        <div>
+            <h1 class="w3-center">New Account Registration</h1>
+            <table class="w3-center">
+                <tr>
+                    <td style="width: 50%" class="w3-right-align">Username:</td>
+                    <td class="w3-left-align">
+                        <asp:TextBox ID="TextBoxUsername" runat="server"></asp:TextBox></td>
                 </tr>
-                </table>
+                <tr>
+                    <td style="width: 50%" class="w3-right-align">Password: </td>
+                    <td class="w3-left-align">
+                        <asp:TextBox ID="TextBoxPw" runat="server" TextMode="Password"></asp:TextBox></td>
+                </tr>
+                <tr>
+                    <td style="width: 50%" class="w3-right-align">Name: </td>
+                    <td class="w3-left-align">
+                        <asp:TextBox ID="TextBoxName" runat="server"></asp:TextBox></td>
+                </tr>
+                <tr>
+                    <td style="width: 50%" class="w3-right-align">Address: </td>
+                    <td style="width: 80%">
+                        <asp:TextBox ID="TextBoxAddress" runat="server" Width="601px"></asp:TextBox></td>
+                </tr>
+            </table>
         </div>
-        <asp:Button ID="ButtonSubmit" runat="server" Text="Register" OnClick="ButtonSubmit_Click" />
-        
-
+        <div class="w3-center">
+            <asp:Button ID="ButtonSubmit" runat="server" Text="Register" OnClick="ButtonSubmit_Click" /></div>
+        <br />
+        <div class="w3-center w3-text-red"><asp:Label ID="LabelError" runat="server" Text=""></asp:Label></div>
     </form>
 </body>
 </html>

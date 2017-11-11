@@ -24,6 +24,7 @@ namespace FoodStallEFVersion
                 if (ur.password == TextBoxPw.Text)
                 {
                     Session["UserName"] = ur.userName;
+                    Session["PersonName"] = ur.personName;
                     Response.Redirect("OrderPage.aspx", true);
                 }
             }

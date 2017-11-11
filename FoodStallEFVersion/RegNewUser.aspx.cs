@@ -18,18 +18,22 @@ namespace FoodStallEFVersion
         protected void ButtonSubmit_Click(object sender, EventArgs e)
         {
             changsiangfooddbEntities ctx = new changsiangfooddbEntities();
-            User newUser = new User();
-            if (IsNotNull(TextBoxName.Text) && IsNotNull(TextBoxPw.Text) && IsNotNull(TextBoxName.Text) && IsNotNull(TextBoxAddress.Text))
+            if (IsNotNull(TextBoxName.Text) == true 
+                && IsNotNull(TextBoxPw.Text) == true
+                && IsNotNull(TextBoxName.Text) == true
+                && IsNotNull(TextBoxAddress.Text) == true )
             {
                 try
                 {
+                    User newUser = new User();
                     newUser.userName = TextBoxUsername.Text;
                     newUser.password = TextBoxPw.Text;
                     newUser.personName = TextBoxName.Text;
                     newUser.personAddress = TextBoxAddress.Text;
                     ctx.Users.Add(newUser);
                     ctx.SaveChanges();
-                    Server.TransferRequest("Default.aspx", true);
+                    LabelError.Text = "Account Created Successfully";
+                    Response.Redirect("Default.aspx");
                 }
                 catch (Exception ex)
                 {
@@ -48,7 +52,7 @@ namespace FoodStallEFVersion
 
         protected bool IsNotNull(string s)
         {
-            if(s != null)
+            if(s != "")
             {
                 return true;
             }

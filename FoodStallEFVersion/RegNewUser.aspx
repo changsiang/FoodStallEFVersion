@@ -9,32 +9,32 @@
 <body>
     <form id="form1" runat="server">
         <div>
-            <h1 class="w3-center">New Account Registration</h1>
+            <h1 class="w3-center w3-animate-top">New Account Registration</h1>
             <table class="w3-center">
                 <tr>
                     <td style="width: 50%" class="w3-right-align">Username:</td>
                     <td class="w3-left-align">
-                        <asp:TextBox ID="TextBoxUsername" runat="server"></asp:TextBox></td>
+                        <asp:TextBox ID="TextBoxUsername" CssClass="w3-input w3-border" runat="server" Width="30%"></asp:TextBox></td>
                 </tr>
                 <tr>
                     <td style="width: 50%" class="w3-right-align">Password: </td>
                     <td class="w3-left-align">
-                        <asp:TextBox ID="TextBoxPw" runat="server" TextMode="Password"></asp:TextBox></td>
+                        <asp:TextBox ID="TextBoxPw" CssClass="w3-input w3-border" runat="server" TextMode="Password" Width="30%"></asp:TextBox></td>
                 </tr>
                 <tr>
                     <td style="width: 50%" class="w3-right-align">Name: </td>
                     <td class="w3-left-align">
-                        <asp:TextBox ID="TextBoxName" runat="server"></asp:TextBox></td>
+                        <asp:TextBox ID="TextBoxName" CssClass="w3-input w3-border" runat="server" Width="30%"></asp:TextBox></td>
                 </tr>
                 <tr>
                     <td style="width: 50%" class="w3-right-align">Address: </td>
                     <td style="width: 80%">
-                        <asp:TextBox ID="TextBoxAddress" runat="server" Width="601px"></asp:TextBox></td>
+                        <asp:TextBox ID="TextBoxAddress" CssClass="w3-input w3-border" runat="server" width="635px"></asp:TextBox></td>
                 </tr>
             </table>
         </div>
         <div class="w3-center">
-            <asp:Button ID="ButtonSubmit" runat="server" Text="Register" OnClick="ButtonSubmit_Click" /></div>
+            <asp:Button ID="ButtonSubmit" CssClass="w3-btn w3-ripple w3-black" runat="server" Text="Register" OnClick="ButtonSubmit_Click" /></div>
         <br />
         <div class="w3-center w3-text-red"><asp:Label ID="LabelError" runat="server" Text=""></asp:Label></div>
     </form>

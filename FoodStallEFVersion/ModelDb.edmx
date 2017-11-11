@@ -19,7 +19,7 @@
           </Key>
           <Property Name="orderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="orderDate" Type="date" />
-          <Property Name="deliveryLocation" Type="nvarchar" MaxLength="50" />
+          <Property Name="deliveryLocation" Type="nvarchar(max)" />
           <Property Name="orderStatus" Type="nchar" MaxLength="10" />
           <Property Name="orderUser" Type="nvarchar" MaxLength="50" />
           <Property Name="orderDish" Type="nvarchar" MaxLength="50" />
@@ -157,7 +157,7 @@
           </Key>
           <Property Name="orderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="orderDate" Type="DateTime" Precision="0" />
-          <Property Name="deliveryLocation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="deliveryLocation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="orderStatus" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="orderUser" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="orderDish" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />

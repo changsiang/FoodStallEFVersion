@@ -8,20 +8,20 @@
 </head>
 <body class="w3-display-topmiddle">
     <div class="w3-text-red w3-justify">
-    <h2>Institute of System Science</h2>
+    <h2 class="w3-animate-zoom">Institute of System Science</h2>
     </div>
-    <h3>Food Ordering System</h3>
-    <p>Please <strong>login</strong> to start ordering...</p>
+    <h3 class="w3-center w3-animate-zoom">Food Ordering System</h3>
+    <p class="w3-animate-zoom">Please <strong>login</strong> to start ordering...</p>
     <form id="form1" runat="server">
     <div>
     <p><strong>Username: </strong> 
-        <asp:TextBox ID="TextBoxUser" runat="server" Value=""></asp:TextBox>
+        <asp:TextBox ID="TextBoxUser" CssClass="w3-input w3-border" runat="server" Value=""></asp:TextBox>
     </p>
     <p><strong>Password: </strong>
-        <asp:TextBox ID="TextBoxPw" runat="server" TextMode="Password"></asp:TextBox>
+        <asp:TextBox ID="TextBoxPw" CssClass="w3-input w3-border" runat="server" TextMode="Password"></asp:TextBox>
     </p>
     <p>
-        <asp:Button ID="BtnLogin" runat="server" Text="Login" OnClick="BtnLogin_Click" /> <asp:PlaceHolder ID="PlaceHolder1" runat="server"></asp:PlaceHolder> <asp:Button ID="BtnReg" runat="server" Text="New Account" OnClick="BtnReg_Click" />
+        <asp:Button ID="BtnLogin" CssClass="w3-btn w3-ripple w3-deep w3-hover-green w3-text-black" runat="server" Text="Login" OnClick="BtnLogin_Click" /> <asp:PlaceHolder ID="PlaceHolder1" runat="server"></asp:PlaceHolder> <asp:Button ID="BtnReg" CssClass="w3-btn w3-hover-red w3-text-black" runat="server" Text="New Account" OnClick="BtnReg_Click" />
     </p>
     <p></p>
         <h5 class="w3-text-red"><asp:Label ID="LabelAlert" runat="server" Text=""></asp:Label></h5>

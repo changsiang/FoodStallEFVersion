@@ -21,10 +21,16 @@
         <asp:TextBox ID="TextBoxPw" CssClass="w3-input w3-border" runat="server" TextMode="Password"></asp:TextBox>
     </p>
     <p>
-        <asp:Button ID="BtnLogin" CssClass="w3-btn w3-ripple w3-deep w3-hover-green w3-text-black" runat="server" Text="Login" OnClick="BtnLogin_Click" /> <asp:PlaceHolder ID="PlaceHolder1" runat="server"></asp:PlaceHolder> <asp:Button ID="BtnReg" CssClass="w3-btn w3-hover-red w3-text-black" runat="server" Text="New Account" OnClick="BtnReg_Click" />
+        <asp:Button ID="BtnLogin" CssClass="w3-btn w3-ripple w3-hover-green w3-text-black" runat="server" Text="Login" OnClick="BtnLogin_Click" /> 
+        <asp:PlaceHolder ID="PlaceHolder1" runat="server"></asp:PlaceHolder> 
+        <asp:Button ID="BtnReg" CssClass="w3-btn w3-hover-red w3-text-black" runat="server" Text="New Account" OnClick="BtnReg_Click" />
+        <asp:PlaceHolder ID="PlaceHolder2" runat="server"></asp:PlaceHolder> 
+        <asp:Button ID="ButtonSummary" CssClass="w3-btn w3-ripple w3-hover-purple w3-text-black" runat="server" Text="Order Summary" OnClick="ButtonSummary_Click" />
     </p>
     <p></p>
-        <h5 class="w3-text-red"><asp:Label ID="LabelAlert" runat="server" Text=""></asp:Label></h5>
+        </div>
+        <div class="w3-center">
+        <h5 class="w3-text-red"><asp:Label ID="LabelAlert" runat="server" Text=""></asp:Label></h5><br />
     </div>
     </form>
 </body>

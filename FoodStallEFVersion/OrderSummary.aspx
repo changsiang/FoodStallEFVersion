@@ -6,14 +6,14 @@
 <head runat="server">
     <title></title>
 </head>
-<body>
-    <div class="w3-display-topmiddle">
-        <h1>Summary of Order as of <asp:Label ID="LabelDate" runat="server" Text=""></asp:Label></h1>
+<body class="w3-display-topmiddle">
+    <div class="w3-center">
+        <h1 class="w3-animate-zoom w3-text-black w3-light-grey">Summary of Order as of <asp:Label ID="LabelDate" runat="server" Text=""></asp:Label></h1>
     </div>
     <p></p>
     <form id="form1" runat="server">
-    <div class="w3-display-middle">
-        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="LinqDataSource1">
+    <div class="w3-responsive">
+        <asp:GridView ID="GridView1" CssClass="w3-table-all w3-justify w3-centered w3-hoverable w3-light-blue w3-bordered w3-border-grey" runat="server" AutoGenerateColumns="False" DataSourceID="LinqDataSource1">
             <Columns>
                 <asp:BoundField DataField="orderID" HeaderText="Order ID" ReadOnly="True" SortExpression="orderID" />
                 <asp:BoundField DataField="orderDate" HeaderText="Order Date" ReadOnly="True" SortExpression="orderDate" />

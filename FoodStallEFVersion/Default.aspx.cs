@@ -39,5 +39,10 @@ namespace FoodStallEFVersion
         {
             Server.Transfer("RegNewUser.aspx", true);
         }
+
+        protected void ButtonSummary_Click(object sender, EventArgs e)
+        {
+            Server.Transfer("OrderSummary.aspx", true);
+        }
     }
 }
